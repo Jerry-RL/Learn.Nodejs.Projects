@@ -1,0 +1,12 @@
+{
+  "name": "02.githubuseractivity",
+  "version": "1.0.0",
+  "description": "GitHub User Activity CLI",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": ["github", "cli", "activity"],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,37 @@
+{
+  "name": "01.task-tracker-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "task-tracker": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc -w",
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean",
+    "task": "node dist/index.js",
+    "start:v1": "ts-node src/v1/index.ts",
+    "start:v2": "node --loader ts-node/esm src/v2/index.ts",
+    "dev": "ts-node-dev --respawn src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.15.29",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "commander": "^14.0.0",
+    "conf": "^13.1.0",
+    "inquirer": "^12.6.3",
+    "ora": "^8.2.0"
+  }
+}

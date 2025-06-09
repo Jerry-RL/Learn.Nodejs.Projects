@@ -1,0 +1,19 @@
+{
+  "name": "expense-tracker",
+  "version": "1.0.0",
+  "description": "Build a simple expense tracker to manage your finances.",
+  "main": "src/index.js",
+  "bin": {
+    "expense-tracker": "./src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "keywords": ["cli", "expense", "tracker"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^14.0.0",
+    "inquirer": "^12.6.3"
+  }
+}
