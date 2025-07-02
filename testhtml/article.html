@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>八月精选 | 城市精彩活动合集</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f7f9fc;
+            color: #333;
+            line-height: 1.6;
+            padding: 15px;
+        }
+        
+        .article-container {
+            max-width: 680px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* 标题区域 */
+        .header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .date-tag {
+            background: rgba(255, 255, 255, 0.2);
+            display: inline-block;
+            padding: 5px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .header h1 {
+            font-size: 26px;
+            margin-bottom: 25px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            line-height: 1.4;
+        }
+        
+        .intro-text {
+            font-size: 16px;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+        
+        /* 内容区域 */
+        .content {
+            padding: 0 25px 30px;
+        }
+        
+        .section {
+            margin: 45px 0;
+        }
+        
+        .section-title {
+            position: relative;
+            font-size: 22px;
+            font-weight: bold;
+            margin: 0 0 25px;
+            padding-bottom: 12px;
+            color: #2c3e50;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #2575fc, #6a11cb);
+            border-radius: 3px;
+        }
+        
+        .activity-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        
+        .activity-img {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .activity-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .activity-content {
+            padding: 25px;
+        }
+        
+        .activity-title {
+            font-size: 19px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #2c3e50;
+        }
+        
+        .activity-meta {
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: #666;
+        }
+        
+        .meta-item {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .meta-icon {
+            width: 20px;
+            margin-right: 10px;
+            color: #2575fc;
+            text-align: center;
+        }
+        
+        .activity-description {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+        
+        .btn-participate {
+            display: inline-block;
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-participate:hover {
+            box-shadow: 0 5px 15px rgba(38, 117, 252, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        /* 结尾区域 */
+        .conclusion {
+            background: #f8fbff;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 50px 0 30px;
+            border-left: 4px solid #2575fc;
+        }
+        
+        .conclusion h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        .conclusion p {
+            margin-bottom: 15px;
+            font-size: 15px;
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        /* 页脚 */
+        .footer {
+            text-align: center;
+            color: #888;
+            padding: 25px 20px;
+            font-size: 14px;
+            border-top: 1px solid #eee;
+            background: #fafafa;
+        }
+        
+        .qr-code {
+            display: inline-block;
+            margin: 15px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 10px;
+            border: 1px solid #eee;
+        }
+        
+        .qr-code img {
+            width: 140px;
+            height: 140px;
+            display: block;
+        }
+        
+        @media screen and (max-width: 480px) {
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: 22px;
+            }
+            
+            .content {
+                padding: 0 15px 25px;
+            }
+            
+            .section {
+                margin: 35px 0;
+            }
+            
+            .section-title {
+                font-size: 20px;
+            }
+            
+            .activity-img {
+                height: 180px;
+            }
+            
+            .btn-participate {
+                display: block;
+                text-align: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="article-container">
+        <!-- 标题区域 -->
+        <div class="header">
+            <div class="date-tag">2023年8月活动精选</div>
+            <h1>城市文化生活 | 八月精彩活动合集</h1>
+            <p class="intro-text">这个夏天，城市文化生活团队为您精心挑选了多场精彩活动，涵盖艺术、音乐、美食、户外等各个领域。无论您是文化艺术爱好者，还是喜欢探索城市生活，这里总有适合您的活动！</p>
+        </div>
+        
+        <!-- 内容区域 -->
+        <div class="content">
+            <!-- 艺术展览部分 -->
+            <div class="section">
+                <h2 class="section-title">艺术展览</h2>
+                
+                <div class="activity-card">
+                    <div class="activity-img">
+                        <img src="https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?q=80" alt="未来视觉艺术展">
+                    </div>
+                    <div class="activity-content">
+                        <h3 class="activity-title">数字艺术：未来视觉体验展</h3>
+                        <div class="activity-meta">
+                            <div class="meta-item">
+                                <span class="meta-icon"><i class="far fa-calendar"></i></span>
+                                8月15日-9月10日（每天10:00-20:00）
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-icon"><i class="fas fa-map-marker-alt"></i></span>
+                                城市艺术中心1号展厅
+                            </div>
+                        </div>
+                        <p class="activity-description">体验数字艺术的奇幻世界！展览汇聚了国内外20位顶尖数字艺术家的前沿作品，包含沉浸式光影空间、AI艺术生成、互动装置艺术等多个板块。特别推荐「幻梦空间」展区，将带来多重感官的震撼体验。</p>
+                        <a href="#" class="btn-participate">
+                            <i class="fas fa-ticket-alt"></i> 立即预约参观
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="activity-card">
+                    <div class="activity-img">
+                        <img src="https://images.unsplash.com/photo-1561070791-36c11767b26a?q=80" alt="本土艺术家联展">
+                    </div>
+                    <div class="activity-content">
+                        <h3 class="activity-title">本土新锐艺术家联展</h3>
+                        <div class="activity-meta">
+                            <div class="meta-item">
+                                <span class="meta-icon"><i class="far fa-calendar"></i></span>
+                                8月12日-8月27日（周二至周日 10:00-18:00）
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-icon"><i class="fas fa-map-marker-alt"></i></span>
+                                创艺美术馆（滨江路88号）
+                            </div>
+                        </div>
+                        <p class="activity-description">发现城市中的艺术新力量！本次展览精选了15位本地青年艺术家的原创作品，涵盖油画、当代水墨、雕塑和装置艺术等多种表现形式。展览期间每周日下午3点有艺术家现场创作与交流会。</p>
+                        <a href="#" class="btn-participate">
+                            <i class="fas fa-ticket-alt"></i> 报名参展
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 音乐演出部分 -->
+            <div class="section">
+                <h2 class="section-title">音乐演出</h2>
+                
+                <div class="activity-card">
+                    <div class="activity-img">
+                        <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80" alt="夏日音乐节">
+                    </div>
+                    <div class="activity-content">
+                        <h3 class="activity-title">滨江夏日音乐狂欢节</h3>
+                        <div class="activity-meta">
+                            <div class="meta-item">
+                                <span class="meta-icon"><i class="far fa-calendar"></i></span>
+                                8月19日-8月20日（16:00-22:00）
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-icon"><i class="fas fa-map-marker-alt"></i></span>
+                                滨江公园露天音乐广场
+                            </div>
+                        </div>
+                        <p class="activity-description">连续两天的音乐盛宴！汇聚了本城最具代表性的10支乐队及独立音乐人，还有神秘嘉宾现场表演。舞台区将设多个互动区域，搭配美食市集和创意灯光秀，让您尽享夏日音乐时光。</p>
+                        <a href="#" class="btn-participate">
+                            <i class="fas fa-ticket-alt"></i> 立即抢购门票
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 美食体验部分 -->
+            <div class="section">
+                <h2 class="section-title">美食体验</h2>
+                
+                <div class="activity-card">
+                    <div class="activity-img">
+                        <img src="https://images.unsplash.com/photo-1502301103665-0b95cc738daf?q=80" alt="环球美食节">
+                    </div>
+                    <div class="activity-content">
+                        <h3 class="activity-title">环球美食文化节</h3>
+                        <div class="activity-meta">
+                            <div class="meta-item">
+                                <span class="meta-icon"><i class="far fa-calendar"></i></span>
+                                8月18日-8月22日（11:00-21:00）
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-icon"><i class="fas fa-map-marker-alt"></i></span>
+                                国际会展中心西广场
+                            </div>
+                        </div>
+                        <p class="activity-description">一次性品尝30+国家地道美食！从意式手工披萨到东南亚街头小吃，从法式甜品到墨西哥风味塔可饼。每天下午5点后，还有米其林大厨现场教学和品酒工作坊，让您体验全球美食魅力。</p>
+                        <a href="#" class="btn-participate">
+                            <i class="fas fa-utensils"></i> 了解详情
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 结尾部分 -->
+            <div class="conclusion">
+                <h2>让城市生活充满无限可能</h2>
+                <p>无论您是艺术爱好者、音乐发烧友还是美食探索家，我们的活动合集都为您精心准备了多样化的体验选择。</p>
+                <p>特别提示：部分活动名额有限，建议提前预约报名。更多活动更新请持续关注我们的公众号。</p>
+                <p>如果您有特别的活动需求或建议，欢迎在评论区留言告诉我们！</p>
+                <p>期待在活动中与您相遇，共同创造美好回忆！</p>
+            </div>
+        </div>
+        
+        <!-- 页脚 -->
+        <div class="footer">
+            <p>关注【城市文化生活】公众号，第一时间获取最新活动资讯</p>
+            <div class="qr-code">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.example.com" alt="公众号二维码">
+            </div>
+            <p>客服微信：citylife2023</p>
+            <p>城市文化生活 · 让生活更有温度</p>
+        </div>
+    </div>
+</body>
+</html>

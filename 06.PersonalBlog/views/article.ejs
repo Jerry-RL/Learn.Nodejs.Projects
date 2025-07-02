@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= article.title %> - 个人博客</title>
+    <link href="/public/tailwind.css" rel="stylesheet">
+  </head>
+  <body class="bg-gray-50 min-h-screen">
+    <div class="max-w-2xl mx-auto py-8">
+      <a href="/" class="text-blue-500 hover:underline">← 返回首页</a>
+      <h1 class="text-3xl font-bold mt-4 mb-2"><%= article.title %></h1>
+      <div class="text-gray-500 text-sm mb-6">发表于 <%= article.date %></div>
+      <div class="prose max-w-none"><%= article.content %></div>
+    </div>
+  </body>
+</html>

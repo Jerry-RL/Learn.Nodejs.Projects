@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>后台管理 - 个人博客</title>
+    <link href="/public/tailwind.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <nav class="bg-white shadow">
+        <div class="max-w-6xl mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <h1 class="text-xl font-bold text-gray-800">后台管理</h1>
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="text-gray-600 hover:text-gray-900">查看前台</a>
+                    <a href="/admin/add" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">新增文章</a>
+                    <a href="/admin/logout" class="text-red-600 hover:text-red-800">退出登录</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-6xl mx-auto px-4 py-8">
+        <div class="bg-white rounded-lg shadow">
+            <div class="px-6 py-4 border-b">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-lg font-semibold">文章管理</h2>
+                    <button id="batchDeleteBtn" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 hidden">
+                        批量删除
+                    </button>
+                </div>
+            </div>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left">
+                                <input type="checkbox" id="selectAll" class="rounded">
+                            </th>
+                            <th class="px-6 py-3 text-left">标题</th>
+                            <th class="px-6 py-3 text-left">发布日期</th>
+                            <th class="px-6 py-3 text-left">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y">
+                        <% articles.forEach(article => { %>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4">
+                                    <input type="checkbox" class="article-checkbox rounded" value="<%= article.id %>">
+                                </td>
+                                <td class="px-6 py-4">
+                                    <a href="/article/<%= article.id %>" class="text-blue-600 hover:underline">
+                                        <%= article.title %>
+                                    </a>
+                                </td>
+                                <td class="px-6 py-4 text-gray-500"><%= article.date %></td>
+                                <td class="px-6 py-4">
+                                    <div class="flex space-x-2">
+                                        <a href="/admin/edit/<%= article.id %>" 
+                                           class="text-blue-600 hover:text-blue-800">编辑</a>
+                                        <button onclick="deleteArticle('<%= article.id %>')" 
+                                                class="text-red-600 hover:text-red-800">删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 全选功能
+        document.getElementById('selectAll').addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('.article-checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = this.checked;
+            });
+            updateBatchDeleteButton();
+        });
+
+        // 单个选择框变化
+        document.querySelectorAll('.article-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', updateBatchDeleteButton);
+        });
+
+        // 更新批量删除按钮显示状态
+        function updateBatchDeleteButton() {
+            const checkedBoxes = document.querySelectorAll('.article-checkbox:checked');
+            const batchDeleteBtn = document.getElementById('batchDeleteBtn');
+            
+            if (checkedBoxes.length > 0) {
+                batchDeleteBtn.classList.remove('hidden');
+                batchDeleteBtn.textContent = `批量删除 (${checkedBoxes.length})`;
+            } else {
+                batchDeleteBtn.classList.add('hidden');
+            }
+        }
+
+        // 删除单篇文章
+        function deleteArticle(id) {
+            if (confirm('确定要删除这篇文章吗？')) {
+                fetch(`/admin/delete/${id}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload();
+                    } else {
+                        alert('删除失败');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('删除失败');
+                });
+            }
+        }
+
+        // 批量删除
+        document.getElementById('batchDeleteBtn').addEventListener('click', function() {
+            const checkedBoxes = document.querySelectorAll('.article-checkbox:checked');
+            const ids = Array.from(checkedBoxes).map(checkbox => checkbox.value);
+            
+            if (ids.length === 0) {
+                alert('请选择要删除的文章');
+                return;
+            }
+            
+            if (confirm(`确定要删除选中的 ${ids.length} 篇文章吗？`)) {
+                fetch('/admin/batch-delete', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ ids })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(`成功删除 ${data.deletedCount} 篇文章`);
+                        location.reload();
+                    } else {
+                        alert('批量删除失败');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('批量删除失败');
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

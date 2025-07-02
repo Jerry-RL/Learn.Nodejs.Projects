@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>个人博客</title>
+    <link href="/public/tailwind.css" rel="stylesheet">
+  </head>
+  <body class="bg-gray-50 min-h-screen">
+    <div class="max-w-2xl mx-auto py-8">
+      <h1 class="text-3xl font-bold mb-6 text-center">个人博客</h1>
+      <ul class="space-y-4">
+        <% articles.forEach(article => { %>
+          <li class="bg-white p-4 rounded shadow hover:bg-gray-100 transition">
+            <a href="/article/<%= article.id %>" class="text-xl font-semibold text-blue-600 hover:underline"><%= article.title %></a>
+            <div class="text-gray-500 text-sm mt-1">发表于 <%= article.date %></div>
+          </li>
+        <% }) %>
+      </ul>
+    </div>
+  </body>
+</html>

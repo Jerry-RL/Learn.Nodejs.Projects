@@ -1,0 +1,27 @@
+# Node
+node_modules/
+dist/
+build/
+.env
+.env.*
+.DS_Store
+coverage/
+logs/
+*.log
+
+# Go
+vendor/
+backend/.env
+backend/.env.*
+
+# IDE
+.idea/
+.vscode/
+
+# Next.js/React
+frontend/.next/
+frontend/.env
+frontend/.env.*
+
+# Storybook
+frontend/storybook-static/ 
